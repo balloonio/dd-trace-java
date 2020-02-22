@@ -1,6 +1,6 @@
 package datadog.trace.instrumentation.finatra;
 
-import static datadog.trace.agent.tooling.bytebuddy.matcher.DDElementMatchers.safeExtendsClass;
+import static datadog.trace.agent.tooling.bytebuddy.matcher.DDElementMatchers.extendsClass;
 import static datadog.trace.bootstrap.instrumentation.api.AgentTracer.activateSpan;
 import static datadog.trace.bootstrap.instrumentation.api.AgentTracer.activeSpan;
 import static datadog.trace.bootstrap.instrumentation.api.AgentTracer.startSpan;
@@ -52,7 +52,7 @@ public class FinatraInstrumentation extends Instrumenter.Default {
   @Override
   public ElementMatcher<? super TypeDescription> typeMatcher() {
     return not(isInterface())
-        .and(safeExtendsClass(named("com.twitter.finatra.http.internal.routing.Route")));
+        .and(extendsClass(named("com.twitter.finatra.http.internal.routing.Route")));
   }
 
   @Override
